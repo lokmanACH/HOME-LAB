@@ -4,35 +4,48 @@
 
 > A simple, keyboard-first terminal troubleshooting knowledge base.
 
-**THE WOLF BOOK 🐺** is a lightweight TUI application for storing problems you've encountered and the commands you used to solve them.
+**THE WOLF BOOK 🐺** is a lightweight TUI application for saving and organizing troubleshooting knowledge.
 
-Instead of searching for the same solution again and again, save it once and find it whenever you need it.
+When you encounter a problem, you can save:
+
+* The problem title
+* A description of the problem
+* Multiple solution steps
+* Commands used to solve the problem
+
+Problems are organized into categories using folders, and each problem is stored as a JSON file.
+
+The goal is simple:
+
+> **Solve it once. Remember it forever. 🐺**
 
 ---
 
 ## ✨ Features
 
 * 🐺 Keyboard-first terminal interface
-* 📂 Organize troubleshooting knowledge by categories
-* 📁 Each problem is stored as its own folder
-* 📝 Store a problem title and description
+* ⌨️ Designed to work without a mouse
+* 📂 Organize problems by categories
+* 📁 Each category is a folder
+* 📁 Each problem is a folder
+* 📝 Store problem title and description
 * 🛠️ Store multiple solution steps
-* 💻 Store commands for each solution step
-* 🔎 Browse your troubleshooting knowledge easily
-* 💾 Data stored as simple JSON files
+* 💻 Store commands for every solution step
+* 🔎 Browse your troubleshooting knowledge
+* 💾 Simple JSON-based storage
 * 🐳 Docker support
+* 📦 Available as a Docker image
 * 🖥️ Works directly in a terminal
-* 🖱️ Mouse is optional
 
 ---
 
-## 📁 Data Structure
+# 🏗️ How It Works
 
-THE WOLF BOOK uses the filesystem as its storage.
+THE WOLF BOOK does not use a database.
 
-There is no database.
+Your filesystem is the knowledge base.
 
-The structure looks like this:
+The structure is:
 
 ```text
 data/
@@ -53,9 +66,13 @@ data/
             └── problem.json
 ```
 
+Each category is represented by a directory.
+
+Each problem is represented by a directory.
+
 Each problem contains a `problem.json` file.
 
-Example:
+For example:
 
 ```json
 {
@@ -74,7 +91,13 @@ Example:
 }
 ```
 
-Your troubleshooting knowledge therefore remains simple, portable, and human-readable.
+This makes your troubleshooting knowledge:
+
+* Simple
+* Portable
+* Human-readable
+* Easy to back up
+* Easy to move between machines
 
 ---
 
@@ -82,7 +105,7 @@ Your troubleshooting knowledge therefore remains simple, portable, and human-rea
 
 ## Requirements
 
-To run THE WOLF BOOK directly on your machine:
+To run THE WOLF BOOK directly on your machine, you need:
 
 * Python `3.12+`
 * pip
@@ -96,18 +119,22 @@ Textual >= 0.80.0
 
 ---
 
-## 🖥️ Run on Your Machine
+# 🖥️ Run on Your Machine
 
-### 1. Clone the project
+## 1. Clone the repository
 
 ```bash
 git clone <your-repository-url>
 cd THE_WOLF_BOOK_PROJECT
 ```
 
-### 2. Create a virtual environment
+Replace `<your-repository-url>` with the actual repository URL.
 
-Linux/macOS:
+---
+
+## 2. Create a virtual environment
+
+### Linux / macOS
 
 ```bash
 python3 -m venv .venv
@@ -119,40 +146,49 @@ Activate it:
 source .venv/bin/activate
 ```
 
-Windows:
+### Windows
 
 ```powershell
 python -m venv .venv
+```
+
+Activate it:
+
+```powershell
 .venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+---
+
+## 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-The current requirement is:
+The current dependency is:
 
 ```text
 textual>=0.80.0
 ```
 
-### 4. Start THE WOLF BOOK
+---
+
+## 4. Run THE WOLF BOOK
 
 ```bash
 python app.py
 ```
 
-The TUI will open directly in your terminal.
+The TUI will open directly inside your terminal.
 
 ---
 
-# ⌨️ Keyboard Usage
+# ⌨️ Keyboard First
 
-THE WOLF BOOK is designed to be usable with the keyboard.
+THE WOLF BOOK is designed to be used primarily with the keyboard.
 
-Typical navigation:
+Typical controls include:
 
 ```text
 ↑ / ↓       Navigate
@@ -165,27 +201,30 @@ d           Delete
 q           Quit
 ```
 
-The exact available shortcuts may depend on the current screen.
+The exact shortcuts can depend on the current screen.
 
 The mouse is optional.
 
+You can use THE WOLF BOOK in a minimal terminal environment without depending on a graphical desktop.
+
 ---
 
-# 🐳 Run with Docker
+# 🐳 Docker
 
 THE WOLF BOOK can also run inside Docker.
 
-The Docker image contains the application and its Python dependencies.
+There are two ways to use Docker:
 
-Your troubleshooting data should remain **outside the container**.
+1. Build the image yourself
+2. Pull the published image from Docker Hub
 
-This means you can remove or recreate the container without losing your problems.
+The application is designed so that your troubleshooting data remains **outside the container**.
 
 ---
 
-## Dockerfile
+# 🐳 Option 1 — Build the Docker Image
 
-The project uses the following Dockerfile:
+The project includes a `Dockerfile`.
 
 ```dockerfile
 FROM python:3.12-slim
@@ -201,17 +240,13 @@ COPY . .
 CMD ["python", "app.py"]
 ```
 
----
-
-## Build the Docker Image
-
-From the project directory:
+Build the image:
 
 ```bash
 docker build -t the-wolf-book:v1.1.0 .
 ```
 
-You can verify the image:
+Check that the image exists:
 
 ```bash
 docker images
@@ -219,15 +254,15 @@ docker images
 
 ---
 
-## Run THE WOLF BOOK with Docker
+## Run the locally built image
 
-Create the data directory if it doesn't exist:
+Create the data directory:
 
 ```bash
 mkdir -p data/categories
 ```
 
-Then run:
+Run:
 
 ```bash
 docker run --rm -it \
@@ -236,29 +271,46 @@ docker run --rm -it \
     the-wolf-book:v1.1.0
 ```
 
-### Why `-it`?
+THE WOLF BOOK will now run inside your terminal.
 
-THE WOLF BOOK is an interactive terminal application.
+---
 
-```text
--i
+# 📦 Option 2 — Docker Hub
+
+You can run the published version directly from Docker Hub without cloning the source code or building the image.
+
+## 1. Pull the image
+
+```bash
+docker pull lokman2/the_wolf_book:v1.1.0
 ```
 
-keeps standard input open.
+## 2. Create your data directory
 
-```text
--t
+```bash
+mkdir -p data/categories
 ```
 
-allocates a terminal.
+## 3. Run THE WOLF BOOK
 
-Both are required for a proper interactive TUI experience.
+```bash
+docker run --rm -it \
+    -e TERM=xterm-256color \
+    -v "$(pwd)/data:/app/data" \
+    lokman2/the_wolf_book:v1.1.0
+```
+
+That's it.
+
+You can now use THE WOLF BOOK from your terminal.
 
 ---
 
 # 💾 Docker Data Storage
 
-The most important part of the Docker command is:
+Your troubleshooting data is stored on **your machine**, not inside the Docker container.
+
+The important part of the Docker command is:
 
 ```bash
 -v "$(pwd)/data:/app/data"
@@ -267,99 +319,110 @@ The most important part of the Docker command is:
 This creates a bind mount:
 
 ```text
-Your Machine                     Docker Container
+YOUR MACHINE                    CONTAINER
 
-./data  ──────────────────────>  /app/data
+./data  ─────────────────────>  /app/data
 ```
 
-Therefore, when THE WOLF BOOK creates a problem inside the container:
+For example, if THE WOLF BOOK creates this inside the container:
 
 ```text
-/app/data/categories/Docker/
-└── Container keeps restarting/
-    └── problem.json
+/app/data/categories/
+└── Docker/
+    └── Port already in use/
+        └── problem.json
 ```
 
-the file is actually stored on your machine:
+the actual file is stored on your machine:
 
 ```text
-./data/categories/Docker/Container keeps restarting/problem.json
+./data/categories/
+└── Docker/
+    └── Port already in use/
+        └── problem.json
 ```
 
-Your data does **not** depend on the lifetime of the Docker container.
+So your data remains available even after the container is removed.
 
 ---
 
-# 🔄 Recreating the Container
+# 🔄 Recreate the Container
 
 You can safely remove and recreate the container.
 
-Your data remains on your machine:
+Your data will remain on your machine.
 
-```text
-data/
-└── categories/
-    ├── Linux/
-    ├── Docker/
-    └── Nginx/
-```
-
-Run the application again:
+For example:
 
 ```bash
 docker run --rm -it \
     -e TERM=xterm-256color \
     -v "$(pwd)/data:/app/data" \
-    the-wolf-book:v1.1.0
+    lokman2/the_wolf_book:v1.1.0
 ```
 
-Your previously saved problems will still be available.
+Your existing categories and problems will still be available.
 
 ---
 
-# 🏗️ Project Architecture
+# 📁 Data Portability
 
-THE WOLF BOOK intentionally keeps the architecture simple:
+Because THE WOLF BOOK stores its knowledge as folders and JSON files, you can easily back up your data.
+
+For example:
+
+```bash
+cp -r data data-backup
+```
+
+Or copy the `data` directory to another machine.
+
+You can also keep it in a Git repository if you want to version your troubleshooting knowledge.
+
+---
+
+# 🏗️ Architecture
+
+THE WOLF BOOK intentionally keeps the architecture simple.
 
 ```text
-             🐺 THE WOLF BOOK
-                    │
-                    ▼
-             Textual TUI
-                    │
-                    ▼
-             Filesystem Storage
-                    │
-                    ▼
-              JSON Files
+                🐺 THE WOLF BOOK
+                        │
+                        ▼
+                  Textual TUI
+                        │
+                        ▼
+                Filesystem Storage
+                        │
+                        ▼
+                    JSON Files
 ```
 
 With Docker:
 
 ```text
-┌───────────────────────────────┐
-│       Docker Container        │
-│                               │
-│   Python + Textual + App      │
-│                               │
-│          /app/data             │
-└───────────────┬───────────────┘
-                │
-           Bind Mount
-                │
-                ▼
-┌───────────────────────────────┐
-│        Your Machine           │
-│                               │
-│       ./data/categories/      │
-│                               │
-│       📝 Your knowledge       │
-└───────────────────────────────┘
+┌──────────────────────────────────┐
+│          Docker Container        │
+│                                  │
+│      Python + Textual + App      │
+│                                  │
+│            /app/data             │
+└────────────────┬─────────────────┘
+                 │
+                 │ Bind Mount
+                 ▼
+┌──────────────────────────────────┐
+│           Your Machine           │
+│                                  │
+│         ./data/categories/       │
+│                                  │
+│       📝 Your knowledge          │
+└──────────────────────────────────┘
 ```
 
 ---
 
-# 📦 Version
+# 📦 Project Version
 
 Current version:
 
@@ -367,12 +430,26 @@ Current version:
 v1.1.0
 ```
 
+Docker image:
+
+```text
+lokman2/the_wolf_book:v1.1.0
+```
+
 ---
 
 # 🐺 THE WOLF BOOK
 
-**Build your own troubleshooting knowledge.**
+A personal terminal knowledge base for the problems you encounter while working with technology.
 
-> Encounter it once.
-> Solve it once.
-> Remember it forever. 🐺
+```text
+Encounter it.
+     ↓
+Solve it.
+     ↓
+Save it.
+     ↓
+Find it when you need it.
+```
+
+**Solve it once. Remember it forever. 🐺**

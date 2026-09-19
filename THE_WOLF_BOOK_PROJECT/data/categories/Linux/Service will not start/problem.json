@@ -1,0 +1,18 @@
+{
+  "title": "Service will not start",
+  "description": "A systemd service fails to start or stops immediately after being started.",
+  "solution": [
+    {
+      "description": "Check the service status",
+      "command": "systemctl status service-name"
+    },
+    {
+      "description": "Read recent service logs",
+      "command": "journalctl -u service-name -n 100 --no-pager"
+    },
+    {
+      "description": "Try starting the service again",
+      "command": "sudo systemctl start service-name"
+    }
+  ]
+}

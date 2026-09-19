@@ -1,0 +1,18 @@
+{
+  "title": "Container cannot reach service",
+  "description": "A container cannot connect to another container or service because the network, hostname, or port is incorrect.",
+  "solution": [
+    {
+      "description": "List Docker networks",
+      "command": "docker network ls"
+    },
+    {
+      "description": "Inspect the application network",
+      "command": "docker network inspect network-name"
+    },
+    {
+      "description": "Test DNS and connectivity from the container",
+      "command": "docker exec -it container-name getent hosts service-name"
+    }
+  ]
+}

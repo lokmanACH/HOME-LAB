@@ -1,0 +1,18 @@
+{
+  "title": "Container will not start",
+  "description": "A Docker container exits immediately or fails during startup.",
+  "solution": [
+    {
+      "description": "List all containers and their exit status",
+      "command": "docker ps -a"
+    },
+    {
+      "description": "Read the container logs",
+      "command": "docker logs <container>"
+    },
+    {
+      "description": "Inspect the container configuration",
+      "command": "docker inspect <container>"
+    }
+  ]
+}

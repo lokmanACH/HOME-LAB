@@ -1,0 +1,18 @@
+{
+  "title": "Permission denied",
+  "description": "A Linux command cannot read, write, or execute a file because the current user does not have the required permissions.",
+  "solution": [
+    {
+      "description": "Inspect the file owner and permissions",
+      "command": "ls -l /path/to/file"
+    },
+    {
+      "description": "Change the file owner when appropriate",
+      "command": "sudo chown $USER:$USER /path/to/file"
+    },
+    {
+      "description": "Add user write permission when appropriate",
+      "command": "chmod u+rw /path/to/file"
+    }
+  ]
+}

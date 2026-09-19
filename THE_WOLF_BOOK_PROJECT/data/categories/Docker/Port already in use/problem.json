@@ -1,0 +1,18 @@
+{
+  "title": "Port already in use",
+  "description": "Docker cannot publish a host port because another process or container is already using it.",
+  "solution": [
+    {
+      "description": "Find containers publishing ports",
+      "command": "docker ps --format 'table {{.Names}}\\t{{.Ports}}'"
+    },
+    {
+      "description": "Find other processes using the host port",
+      "command": "sudo ss -lntp | grep :8080"
+    },
+    {
+      "description": "Start the container on another host port",
+      "command": "docker run -p 8081:8080 image-name"
+    }
+  ]
+}

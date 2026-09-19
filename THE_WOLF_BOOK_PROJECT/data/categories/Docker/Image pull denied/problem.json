@@ -1,0 +1,18 @@
+{
+  "title": "Image pull denied",
+  "description": "Docker cannot download an image because the image name is incorrect, private, or requires registry authentication.",
+  "solution": [
+    {
+      "description": "Check the image name and tag",
+      "command": "docker image ls"
+    },
+    {
+      "description": "Authenticate with the container registry",
+      "command": "docker login"
+    },
+    {
+      "description": "Pull the image explicitly",
+      "command": "docker pull image-name:tag"
+    }
+  ]
+}

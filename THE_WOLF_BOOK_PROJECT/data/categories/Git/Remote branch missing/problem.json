@@ -1,0 +1,18 @@
+{
+  "title": "Remote branch missing",
+  "description": "A branch exists on the remote repository but is not visible in the local list of branches.",
+  "solution": [
+    {
+      "description": "Download current remote references",
+      "command": "git fetch --all --prune"
+    },
+    {
+      "description": "List remote branches",
+      "command": "git branch -r"
+    },
+    {
+      "description": "Create a local branch from the remote branch",
+      "command": "git switch --track origin/branch-name"
+    }
+  ]
+}

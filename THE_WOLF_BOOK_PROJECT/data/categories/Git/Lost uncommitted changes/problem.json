@@ -1,0 +1,18 @@
+{
+  "title": "Lost uncommitted changes",
+  "description": "Local work appears to be missing after a reset, checkout, stash, or another Git operation.",
+  "solution": [
+    {
+      "description": "Inspect recent HEAD movements",
+      "command": "git reflog"
+    },
+    {
+      "description": "Inspect dangling objects when needed",
+      "command": "git fsck --lost-found"
+    },
+    {
+      "description": "Create a recovery branch from a discovered commit",
+      "command": "git switch -c recovery <commit>"
+    }
+  ]
+}

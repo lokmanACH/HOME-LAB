@@ -1,0 +1,17 @@
+{
+    "title": "Port already in use",
+    "description": "An application cannot bind to a network port because another process is already listening on it.",
+    "solution": [
+        {
+            "description": "Find the process using the port",
+            "command": "sudo ss -lntp | grep :8080"
+        },
+        {
+            "description": "Inspect the process details",
+            "command": "ps -fp <PID>"
+        },
+        {
+            "description": "Stop the process only if it is safe",
+            "command": "sudo kill <PID>"
+        }
+    ]

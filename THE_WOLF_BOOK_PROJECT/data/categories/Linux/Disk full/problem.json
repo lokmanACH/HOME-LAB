@@ -1,0 +1,18 @@
+{
+  "title": "Disk full",
+  "description": "A Linux system is running out of disk space and applications cannot create new files.",
+  "solution": [
+    {
+      "description": "Check filesystem usage",
+      "command": "df -h"
+    },
+    {
+      "description": "Find large directories",
+      "command": "sudo du -xhd1 / | sort -h"
+    },
+    {
+      "description": "Find large files under a directory",
+      "command": "find /var -type f -size +500M -ls"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Merge conflict",
+  "description": "Git cannot automatically combine changes from two branches because they modify overlapping lines.",
+  "solution": [
+    {
+      "description": "List files with conflicts",
+      "command": "git status"
+    },
+    {
+      "description": "After editing conflict markers, stage the resolved file",
+      "command": "git add path/to/file"
+    },
+    {
+      "description": "Complete the merge",
+      "command": "git commit"
+    }
+  ]
+}

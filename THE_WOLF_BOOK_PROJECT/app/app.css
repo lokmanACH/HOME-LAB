@@ -1,0 +1,85 @@
+Screen {
+  background: #10161c;
+  color: #e6edf3;
+}
+
+Footer {
+  background: #0a0f14;
+}
+
+.home-content,
+.help-content,
+.screen-title,
+#breadcrumb {
+  padding: 2 4;
+}
+
+.home-content {
+  height: 1fr;
+  content-align: center middle;
+  text-align: center;
+}
+
+.screen-title {
+  color: #f5c96a;
+  text-style: bold;
+}
+
+#breadcrumb {
+  color: #8fc1a9;
+}
+
+ListView {
+  height: 1fr;
+  margin: 1 3;
+  border: round #315a78;
+}
+
+ListItem {
+  padding: 1 2;
+}
+
+ListItem.--highlight {
+  background: #254b63;
+  color: #ffffff;
+}
+
+#dialog {
+  width: 70%;
+  max-width: 80;
+  height: auto;
+  padding: 2 3;
+  border: round #f5c96a;
+  background: #17232d;
+  align: center middle;
+}
+
+.wide-dialog {
+  height: auto;
+}
+
+#dialog-heading,
+.problem-title,
+.section-title {
+  color: #f5c96a;
+  text-style: bold;
+  padding-bottom: 1;
+}
+
+Input,
+TextArea {
+  margin: 1 0;
+}
+
+Button {
+  margin: 1 1 0 0;
+}
+
+#problem-scroll {
+  height: 1fr;
+  padding: 1 3;
+}
+
+#problem-description {
+  padding: 1 0;
+}

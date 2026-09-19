@@ -1,0 +1,12 @@
+[project]
+name = "troubleshooting-terminal"
+version = "0.1.0"
+description = "A filesystem-backed keyboard-first troubleshooting knowledge base"
+requires-python = ">=3.10"
+dependencies = [
+  "textual>=0.50",
+  "pyperclip>=1.8",
+]
+
+[project.scripts]
+troubleshooting-terminal = "app.main:main"
